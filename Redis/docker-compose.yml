@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  redis_db:
+    image: redis:latest
+    restart: always
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - ./data/redis:/data
+    privileged: true
+    ports:
+      - 6379:6379
+    container_name: redis_db
