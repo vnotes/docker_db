@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  prometheus_srv:
+    image: prom/prometheus:latest
+    restart: always
+    command: [
+      "--config.file=/etc/prometheus/prometheus_dev.yml",
+      "--storage.tsdb.path=/prometheus",
+      "--web.console.libraries=/usr/share/prometheus/console_libraries",
+      "--web.console.templates=/usr/share/prometheus/consoles"
+    ]
+    volumes:
+      - ./conf:/etc/prometheus
+    privileged: true
+    ports:
+      - 9090:9090
+    container_name: prometheus_srv
